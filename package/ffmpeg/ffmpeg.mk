@@ -4,7 +4,7 @@
 #
 ################################################################################
 
-FFMPEG_VERSION = 3.3.5
+FFMPEG_VERSION = 3.4.1
 FFMPEG_SOURCE = ffmpeg-$(FFMPEG_VERSION).tar.xz
 FFMPEG_SITE = http://ffmpeg.org/releases
 FFMPEG_INSTALL_STAGING = YES
@@ -53,9 +53,7 @@ FFMPEG_CONF_OPTS = \
 	--disable-libdc1394 \
 	--disable-libgsm \
 	--disable-libilbc \
-	--disable-libnut \
 	--disable-libopenjpeg \
-	--disable-libschroedinger \
 	--disable-libvo-amrwbenc \
 	--disable-symver \
 	--disable-doc
@@ -491,6 +489,10 @@ FFMPEG_CONF_OPTS += --cpu=$(BR2_GCC_TARGET_ARCH)
 endif
 
 FFMPEG_CONF_OPTS += $(call qstrip,$(BR2_PACKAGE_FFMPEG_EXTRACONF))
+
+ifeq ($(BR2_PACKAGE_FFMPEG_V4L2_M2M),y)
+FFMPEG_CONF_OPTS += --enable-v4l2_m2m
+endif
 
 # Override FFMPEG_CONFIGURE_CMDS: FFmpeg does not support --target and others
 define FFMPEG_CONFIGURE_CMDS

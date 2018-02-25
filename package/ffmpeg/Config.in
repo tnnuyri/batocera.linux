@@ -171,6 +171,11 @@ config BR2_PACKAGE_FFMPEG_FILTERS
 	  Run ./configure --list-filters in the ffmpeg sources
 	  directory to know the available options.
 
+config BR2_PACKAGE_FFMPEG_V4L2_M2M
+	string "Enabled v4l2_m2m"
+	help
+	  v4l2_m2m video acceleration
+
 config BR2_PACKAGE_FFMPEG_INDEVS
 	bool "Enable input devices"
 	default y
